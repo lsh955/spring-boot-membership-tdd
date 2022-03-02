@@ -15,8 +15,5 @@ public class MembershipRepositoryTest {
     @Autowired
     private MembershipRepository membershipRepository;
 
-    @Test
-    public void MembershipRepository가Null이아님(){
-        Assertions.assertThat(membershipRepository).isNotNull();
-    }
+
 }
