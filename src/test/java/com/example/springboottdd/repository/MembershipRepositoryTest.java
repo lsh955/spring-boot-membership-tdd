@@ -3,6 +3,7 @@ package com.example.springboottdd.repository;
 import com.example.springboottdd.domain.Membership;
 import com.example.springboottdd.enums.MemebershipType;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,7 +19,8 @@ public class MembershipRepositoryTest {
     private MembershipRepository membershipRepository;
 
     @Test
-    public void 멤버십등록() {
+    @DisplayName("멤버십등록")
+    public void MembershipSave() {
         // given
         final Membership membership = Membership.builder()
                 .userId("userId")
@@ -37,7 +39,8 @@ public class MembershipRepositoryTest {
     }
 
     @Test
-    public void 멤버십이존재하는지테스트() {
+    @DisplayName("멤버십이 존재하는지 여부")
+    public void MembershipFindResult() {
         // given
         final Membership membership = Membership.builder()
                 .userId("userId")
