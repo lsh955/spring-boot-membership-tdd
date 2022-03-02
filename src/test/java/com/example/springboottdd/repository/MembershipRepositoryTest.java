@@ -19,7 +19,7 @@ public class MembershipRepositoryTest {
     private MembershipRepository membershipRepository;
 
     @Test
-    @DisplayName("멤버십등록")
+    @DisplayName("멤버십 등록")
     public void MembershipSave() {
         // given
         final Membership membership = Membership.builder()
