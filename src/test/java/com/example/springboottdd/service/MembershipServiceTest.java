@@ -1,7 +1,8 @@
 package com.example.springboottdd.service;
 
 import com.example.springboottdd.domain.Membership;
-import com.example.springboottdd.enums.MemebershipType;
+import com.example.springboottdd.enums.MembershipErrorResult;
+import com.example.springboottdd.exception.MembershipException;
 import com.example.springboottdd.repository.MembershipRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
