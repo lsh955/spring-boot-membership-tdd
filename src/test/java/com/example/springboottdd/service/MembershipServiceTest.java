@@ -34,7 +34,7 @@ public class MembershipServiceTest {
     private MembershipRepository membershipRepository;
 
     @Test
-    @DisplayName("멤버십등록실패(이미 존재하는 멤버십)")
+    @DisplayName("멤버십등록 실패(이미 존재하는 멤버십)")
     public void 멤버십등록실패() {
         // given
         doReturn(Membership.builder().build()).when(membershipRepository).findByUserIdAndMembershipType(userId, membershipType);
@@ -47,7 +47,7 @@ public class MembershipServiceTest {
     }
 
     @Test
-    @DisplayName("멤버십등록성공(존재하지 않는 멤버십)")
+    @DisplayName("멤버십등록 성공(존재하지 않는 멤버십)")
     public void 멤버십등록성공() {
         // given
         doReturn(null).when(membershipRepository).findByUserIdAndMembershipType(userId, membershipType);
