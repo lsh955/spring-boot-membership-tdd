@@ -56,6 +56,10 @@ public class MembershipServiceTest {
         // when
         final Membership membership = target.addMembership(userId, membershipType, point);
 
+        // then
+        assertThat(membership.getId()).isNotNull();
+        assertThat(membership.getMembershipType()).isEqualTo(MembershipType.NAVER);
+
         // verify
         verify(membershipRepository, times(1)).findByUserIdAndMembershipType(userId, membershipType);
         verify(membershipRepository, times(1)).save(any(Membership.class));
