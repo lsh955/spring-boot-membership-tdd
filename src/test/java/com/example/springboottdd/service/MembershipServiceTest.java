@@ -14,7 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 /**
  * @author 이승환
@@ -33,8 +34,8 @@ public class MembershipServiceTest {
     private MembershipRepository membershipRepository;
 
     @Test
-    @DisplayName("멤버십등록실패_이미존재함")
-    public void 멤버십등록실패_이미존재함() {
+    @DisplayName("멤버십등록실패(이미존재)")
+    public void 멤버십등록실패() {
         // given
         doReturn(Membership.builder().build()).when(membershipRepository).findByUserIdAndMembershipType(userId, membershipType);
 
@@ -43,5 +44,28 @@ public class MembershipServiceTest {
 
         // then
         assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.DUPLICATED_MEMBERSHIP_REGISTER);
+    }
+
+    @Test
+    public void 멤버십등록성공() {
+        // given
+        doReturn(null).when(membershipRepository).findByUserIdAndMembershipType(userId, membershipType);
+        doReturn(membership()).when(membershipRepository).save(any(Membership.class));
+
+        // when
+        final Membership membership = target.addMembership(userId, membershipType, point);
+
+        // verify
+        verify(membershipRepository, times(1)).findByUserIdAndMembershipType(userId, membershipType);
+        verify(membershipRepository, times(1)).save(any(Membership.class));
+    }
+
+    private Membership membership() {
+        return Membership.builder()
+                .id(-1L)
+                .userId(userId)
+                .point(point)
+                .membershipType(MembershipType.NAVER)
+                .build();
     }
 }
