@@ -2,11 +2,12 @@ package com.example.springboottdd.repository;
 
 import com.example.springboottdd.domain.Membership;
 import com.example.springboottdd.enums.MembershipType;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author 이승환
@@ -32,10 +33,10 @@ public class MembershipRepositoryTest {
         final Membership result = membershipRepository.save(membership);
 
         // then
-        Assertions.assertThat(result.getId()).isNotNull();
-        Assertions.assertThat(result.getUserId()).isEqualTo("userId");
-        Assertions.assertThat(result.getMembershipType()).isEqualTo(MembershipType.NAVER);
-        Assertions.assertThat(result.getPoint()).isEqualTo(10000);
+        assertThat(result.getId()).isNotNull();
+        assertThat(result.getUserId()).isEqualTo("userId");
+        assertThat(result.getMembershipType()).isEqualTo(MembershipType.NAVER);
+        assertThat(result.getPoint()).isEqualTo(10000);
     }
 
     @Test
@@ -53,10 +54,10 @@ public class MembershipRepositoryTest {
         final Membership findResult = membershipRepository.findByUserIdAndMembershipType("userId", MembershipType.NAVER);
 
         // then
-        Assertions.assertThat(findResult).isNotNull();
-        Assertions.assertThat(findResult.getId()).isNotNull();
-        Assertions.assertThat(findResult.getUserId()).isEqualTo("userId");
-        Assertions.assertThat(findResult.getMembershipType()).isEqualTo(MembershipType.NAVER);
-        Assertions.assertThat(findResult.getPoint()).isEqualTo(10000);
+        assertThat(findResult).isNotNull();
+        assertThat(findResult.getId()).isNotNull();
+        assertThat(findResult.getUserId()).isEqualTo("userId");
+        assertThat(findResult.getMembershipType()).isEqualTo(MembershipType.NAVER);
+        assertThat(findResult.getPoint()).isEqualTo(10000);
     }
 }
