@@ -1,7 +1,7 @@
 package com.example.springboottdd.repository;
 
 import com.example.springboottdd.domain.Membership;
-import com.example.springboottdd.enums.MemebershipType;
+import com.example.springboottdd.enums.MembershipType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -10,6 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface MembershipRepository extends JpaRepository<Membership, Long> {
 
-    Membership findByUserIdAndMembershipType(final String userId, final MemebershipType memebershipType);
+    Membership findByUserIdAndMembershipType(final String userId, final MembershipType membershipType);
 
 }

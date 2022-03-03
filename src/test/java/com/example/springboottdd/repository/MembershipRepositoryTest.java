@@ -1,7 +1,7 @@
 package com.example.springboottdd.repository;
 
 import com.example.springboottdd.domain.Membership;
-import com.example.springboottdd.enums.MemebershipType;
+import com.example.springboottdd.enums.MembershipType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class MembershipRepositoryTest {
         // given
         final Membership membership = Membership.builder()
                 .userId("userId")
-                .membershipType(MemebershipType.NAVER)
+                .membershipType(MembershipType.NAVER)
                 .point(10000)
                 .build();
 
@@ -34,7 +34,7 @@ public class MembershipRepositoryTest {
         // then
         Assertions.assertThat(result.getId()).isNotNull();
         Assertions.assertThat(result.getUserId()).isEqualTo("userId");
-        Assertions.assertThat(result.getMembershipType()).isEqualTo(MemebershipType.NAVER);
+        Assertions.assertThat(result.getMembershipType()).isEqualTo(MembershipType.NAVER);
         Assertions.assertThat(result.getPoint()).isEqualTo(10000);
     }
 
@@ -44,19 +44,19 @@ public class MembershipRepositoryTest {
         // given
         final Membership membership = Membership.builder()
                 .userId("userId")
-                .membershipType(MemebershipType.NAVER)
+                .membershipType(MembershipType.NAVER)
                 .point(10000)
                 .build();
 
         // when
         membershipRepository.save(membership);
-        final Membership findResult = membershipRepository.findByUserIdAndMembershipType("userId", MemebershipType.NAVER);
+        final Membership findResult = membershipRepository.findByUserIdAndMembershipType("userId", MembershipType.NAVER);
 
         // then
         Assertions.assertThat(findResult).isNotNull();
         Assertions.assertThat(findResult.getId()).isNotNull();
         Assertions.assertThat(findResult.getUserId()).isEqualTo("userId");
-        Assertions.assertThat(findResult.getMembershipType()).isEqualTo(MemebershipType.NAVER);
+        Assertions.assertThat(findResult.getMembershipType()).isEqualTo(MembershipType.NAVER);
         Assertions.assertThat(findResult.getPoint()).isEqualTo(10000);
     }
 }

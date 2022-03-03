@@ -1,7 +1,7 @@
 package com.example.springboottdd.domain;
 
 
-import com.example.springboottdd.enums.MemebershipType;
+import com.example.springboottdd.enums.MembershipType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,7 +30,7 @@ public class Membership {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private MemebershipType membershipType;
+    private MembershipType membershipType;
 
     @Column(nullable = false)
     private String userId;
