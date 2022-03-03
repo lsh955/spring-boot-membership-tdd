@@ -23,15 +23,14 @@ import static org.mockito.Mockito.doReturn;
 @ExtendWith(MockitoExtension.class)
 public class MembershipServiceTest {
 
-    @InjectMocks
-    private MembershipService target;
-
-    @Mock
-    private MembershipRepository membershipRepository;
-
     private final String userId = "userId";
     private final MembershipType membershipType = MembershipType.NAVER;
     private final Integer point = 10000;
+
+    @InjectMocks
+    private MembershipService target;
+    @Mock
+    private MembershipRepository membershipRepository;
 
     @Test
     @DisplayName("멤버십등록실패_이미존재함")
