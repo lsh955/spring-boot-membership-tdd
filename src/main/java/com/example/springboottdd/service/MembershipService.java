@@ -21,7 +21,7 @@ public class MembershipService {
     public Membership addMembership(final String userId, final MembershipType membershipType, final Integer point) {
         final Membership membership = membershipRepository.findByUserIdAndMembershipType(userId, membershipType);
 
-        if(membership != null)
+        if(membership != null)  // 중복된 회원이 있을경우 Exception 호출
             throw new MembershipException(MembershipErrorResult.DUPLICATED_MEMBERSHIP_REGISTER);
 
         return null;
