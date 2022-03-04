@@ -1,6 +1,7 @@
 package com.example.springboottdd.controller;
 
 import com.google.gson.Gson;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,11 +24,14 @@ public class MembershipControllerTest {
     private MockMvc mockMvc;
     private Gson gson;
 
-    @Test
-    public void mockMvc가Null이아님() throws Exception {
+    @BeforeEach
+    public void init() {
         mockMvc = MockMvcBuilders.standaloneSetup(membershipController)
                 .build();
+    }
 
+    @Test
+    public void mockMvc가Null이아님() throws Exception {
         assertThat(membershipController).isNotNull();
         assertThat(mockMvc).isNotNull();
     }
