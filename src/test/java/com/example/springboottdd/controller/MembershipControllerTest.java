@@ -27,6 +27,7 @@ public class MembershipControllerTest {
 
     @BeforeEach
     public void init() {
+        gson = new Gson();
         mockMvc = MockMvcBuilders.standaloneSetup(membershipController)
                 .build();
     }
