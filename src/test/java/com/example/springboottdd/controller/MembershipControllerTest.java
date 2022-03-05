@@ -39,13 +39,14 @@ public class MembershipControllerTest {
     }
 
     @Test
-    @DisplayName("mockMvc가 Null인지 여부를 판단")
+    @DisplayName("MockMvc 테스트(MockMvc 가 Null 인지 여부)")
     public void mockMvc가Null이아님() throws Exception {
         assertThat(membershipController).isNotNull();
         assertThat(mockMvc).isNotNull();
     }
 
     @Test
+    @DisplayName("맴버십등록 실패(사용자 식별값이 헤더에 없음)")
     public void 멤버십등록실패_사용자식별값이헤더에없음() throws Exception {
         // given
         final String url = "/api/v1/membership";
