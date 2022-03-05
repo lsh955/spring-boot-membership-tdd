@@ -1,5 +1,6 @@
 package com.example.springboottdd.controller;
 
+import com.example.springboottdd.dto.MembershipRequest;
 import com.example.springboottdd.enums.MembershipType;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
