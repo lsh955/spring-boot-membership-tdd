@@ -1,5 +1,6 @@
 package com.example.springboottdd.controller;
 
+import com.example.springboottdd.common.GlobalExceptionHandler;
 import com.example.springboottdd.dto.MembershipRequest;
 import com.example.springboottdd.enums.MembershipErrorResult;
 import com.example.springboottdd.enums.MembershipType;
@@ -44,6 +45,7 @@ public class MembershipControllerTest {
     public void init() {
         gson = new Gson();
         mockMvc = MockMvcBuilders.standaloneSetup(membershipController)
+                .setControllerAdvice(new GlobalExceptionHandler())
                 .build();
     }
 
