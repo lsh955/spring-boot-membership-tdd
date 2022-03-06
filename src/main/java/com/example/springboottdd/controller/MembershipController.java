@@ -28,10 +28,15 @@ public class MembershipController {
     @PostMapping("/api/v1/membership")
     public ResponseEntity<MembershipResponse> addMembership (
             @RequestHeader(USER_ID_HEADER) final String userid,
-            @RequestBody @Valid final MembershipRequest membershipRequest) {
+            @RequestBody @Valid final MembershipRequest membershipRequest
+    ) {
+        final MembershipResponse membershipResponse = membershipService.addMembership(
+                userid,
+                membershipRequest.getMembershipType(),
+                membershipRequest.getPoint()
+        );
 
-        membershipService.addMembership(userid, membershipRequest.getMembershipType(), membershipRequest.getPoint());
-
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(membershipResponse);
     }
 }
