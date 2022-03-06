@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 /**
  * @author 이승환
  * @since 2022-03-06
+ *
+ * 모든 컨트롤러에서 Exception이 발생하였을 때 전역적으로 처리하기 위함
  */
 @Slf4j
 @RestControllerAdvice
