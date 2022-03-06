@@ -68,7 +68,7 @@ public class MembershipControllerTest {
 
         // when
         final ResultActions resultActions = mockMvc.perform(
-                 MockMvcRequestBuilders.post(url)
+                MockMvcRequestBuilders.post(url)
                         .content(gson.toJson(membershipRequest(10000, MembershipType.NAVER)))
                         .contentType(MediaType.APPLICATION_JSON)
         );

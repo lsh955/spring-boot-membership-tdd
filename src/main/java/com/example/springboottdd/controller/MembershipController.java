@@ -26,7 +26,7 @@ public class MembershipController {
     private final MembershipService membershipService;
 
     @PostMapping("/api/v1/membership")
-    public ResponseEntity<MembershipResponse> addMembership (
+    public ResponseEntity<MembershipResponse> addMembership(
             @RequestHeader(USER_ID_HEADER) final String userid,
             @RequestBody @Valid final MembershipRequest membershipRequest
     ) {
