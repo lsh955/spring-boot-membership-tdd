@@ -64,8 +64,8 @@ public class MembershipRepositoryTest {
     }
 
     @Test
-    @DisplayName("멤버십조회_사이즈가0")
-    public void 멤버십조회_사이즈가0() {
+    @DisplayName("멤버십조회_사이즈가_0")
+    public void 멤버십조회성공_사이즈가0() {
         // given
 
         // when
@@ -76,8 +76,8 @@ public class MembershipRepositoryTest {
     }
 
     @Test
-    @DisplayName("멤버십조회_사이즈가2")
-    public void 멤버십조회_사이즈가2() {
+    @DisplayName("멤버십조회_사이즈가_2")
+    public void 멤버십조회성공_사이즈가2() {
         // given
         final Membership naverMembership = Membership.builder()
                 .userId("userId")
