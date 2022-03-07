@@ -187,7 +187,8 @@ public class MembershipControllerTest {
     }
 
     @Test
-    public void 멤버십목록조회실패_사용자식별값이헤더에없음() throws Exception {
+    @DisplayName("멤버십록록조회 실패(사용자 식별값이 헤더에 없음)")
+    public void 멤버십목록조회실패() throws Exception {
         // given
         final String url = "/api/v1/membership/list";
 
@@ -201,6 +202,7 @@ public class MembershipControllerTest {
     }
 
     @Test
+    @DisplayName("멤버십록록조회 성공")
     public void 멤버십목록조회성공() throws Exception {
         // given
         final String url = "/api/v1/membership/list";
