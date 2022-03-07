@@ -98,6 +98,6 @@ public class MembershipRepositoryTest {
         List<Membership> memberships = membershipRepository.findAllByUserId("userId");
 
         // then
-        assertThat(memberships.size()).isEqualTo(0);
+        assertThat(memberships.size()).isEqualTo(2);
     }
 }
