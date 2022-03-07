@@ -1,7 +1,7 @@
 package com.example.springboottdd.service;
 
 import com.example.springboottdd.domain.Membership;
-import com.example.springboottdd.dto.MembershipResponse;
+import com.example.springboottdd.dto.MembershipAddResponse;
 import com.example.springboottdd.enums.MembershipErrorResult;
 import com.example.springboottdd.enums.MembershipType;
 import com.example.springboottdd.exception.MembershipException;
@@ -21,7 +21,7 @@ public class MembershipService {
 
     private final MembershipRepository membershipRepository;
 
-    public MembershipResponse addMembership(final String userId, final MembershipType membershipType, final Integer point) {
+    public MembershipAddResponse addMembership(final String userId, final MembershipType membershipType, final Integer point) {
         final Membership result = membershipRepository.findByUserIdAndMembershipType(userId, membershipType);
 
         if (result != null)  // 중복된 회원이 있을경우 Exception 호출
@@ -35,7 +35,7 @@ public class MembershipService {
 
         final Membership savedMembership = membershipRepository.save(membership);
 
-        return MembershipResponse.builder()
+        return MembershipAddResponse.builder()
                 .id(savedMembership.getId())
                 .membershipType(savedMembership.getMembershipType())
                 .build();

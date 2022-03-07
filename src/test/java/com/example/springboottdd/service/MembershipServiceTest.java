@@ -1,7 +1,7 @@
 package com.example.springboottdd.service;
 
 import com.example.springboottdd.domain.Membership;
-import com.example.springboottdd.dto.MembershipResponse;
+import com.example.springboottdd.dto.MembershipAddResponse;
 import com.example.springboottdd.enums.MembershipErrorResult;
 import com.example.springboottdd.enums.MembershipType;
 import com.example.springboottdd.exception.MembershipException;
@@ -58,7 +58,7 @@ public class MembershipServiceTest {
         doReturn(membership()).when(membershipRepository).save(any(Membership.class));
 
         // when
-        final MembershipResponse membership = target.addMembership(userId, membershipType, point);
+        final MembershipAddResponse membership = target.addMembership(userId, membershipType, point);
 
         // then
         assertThat(membership.getId()).isNotNull();

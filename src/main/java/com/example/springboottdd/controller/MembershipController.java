@@ -1,7 +1,7 @@
 package com.example.springboottdd.controller;
 
 import com.example.springboottdd.dto.MembershipRequest;
-import com.example.springboottdd.dto.MembershipResponse;
+import com.example.springboottdd.dto.MembershipAddResponse;
 import com.example.springboottdd.service.MembershipService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,17 +26,17 @@ public class MembershipController {
     private final MembershipService membershipService;
 
     @PostMapping("/api/v1/membership")
-    public ResponseEntity<MembershipResponse> addMembership(
+    public ResponseEntity<MembershipAddResponse> addMembership(
             @RequestHeader(USER_ID_HEADER) final String userid,
             @RequestBody @Valid final MembershipRequest membershipRequest
     ) {
-        final MembershipResponse membershipResponse = membershipService.addMembership(
+        final MembershipAddResponse membershipAddResponse = membershipService.addMembership(
                 userid,
                 membershipRequest.getMembershipType(),
                 membershipRequest.getPoint()
         );
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(membershipResponse);
+                .body(membershipAddResponse);
     }
 }

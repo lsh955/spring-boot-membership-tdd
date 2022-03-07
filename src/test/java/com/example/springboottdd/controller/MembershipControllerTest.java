@@ -2,7 +2,7 @@ package com.example.springboottdd.controller;
 
 import com.example.springboottdd.common.GlobalExceptionHandler;
 import com.example.springboottdd.dto.MembershipRequest;
-import com.example.springboottdd.dto.MembershipResponse;
+import com.example.springboottdd.dto.MembershipAddResponse;
 import com.example.springboottdd.enums.MembershipErrorResult;
 import com.example.springboottdd.enums.MembershipType;
 import com.example.springboottdd.exception.MembershipException;
@@ -157,12 +157,12 @@ public class MembershipControllerTest {
     public void 멤버십등록성공() throws Exception {
         // given
         final String url = "/api/v1/membership";
-        final MembershipResponse membershipResponse = MembershipResponse.builder()
+        final MembershipAddResponse membershipAddResponse = MembershipAddResponse.builder()
                 .id(-1L)
                 .membershipType(MembershipType.NAVER)
                 .build();
 
-        doReturn(membershipResponse).when(membershipService).addMembership("12345", MembershipType.NAVER, 10000);
+        doReturn(membershipAddResponse).when(membershipService).addMembership("12345", MembershipType.NAVER, 10000);
 
         // when
         final ResultActions resultActions = mockMvc.perform(
@@ -175,9 +175,9 @@ public class MembershipControllerTest {
         // then
         resultActions.andExpect(status().isCreated());
 
-        final MembershipResponse response = gson.fromJson(resultActions.andReturn()
+        final MembershipAddResponse response = gson.fromJson(resultActions.andReturn()
                 .getResponse()
-                .getContentAsString(StandardCharsets.UTF_8), MembershipResponse.class
+                .getContentAsString(StandardCharsets.UTF_8), MembershipAddResponse.class
         );
 
         assertThat(response.getMembershipType()).isEqualTo(MembershipType.NAVER);
