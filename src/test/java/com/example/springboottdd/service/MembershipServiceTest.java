@@ -2,6 +2,7 @@ package com.example.springboottdd.service;
 
 import com.example.springboottdd.domain.Membership;
 import com.example.springboottdd.dto.MembershipAddResponse;
+import com.example.springboottdd.dto.MemebershipDetailResponse;
 import com.example.springboottdd.enums.MembershipErrorResult;
 import com.example.springboottdd.enums.MembershipType;
 import com.example.springboottdd.exception.MembershipException;
@@ -80,7 +81,7 @@ public class MembershipServiceTest {
         )).when(membershipRepository).findAllByUserId(userId);
 
         // when
-        final List<Membership> memberships = target.getMembershipList(userId);
+        final List<MemebershipDetailResponse> memberships = target.getMembershipList(userId);
 
         // then
         assertThat(memberships.size()).isEqualTo(3);

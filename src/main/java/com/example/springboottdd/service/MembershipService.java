@@ -2,6 +2,7 @@ package com.example.springboottdd.service;
 
 import com.example.springboottdd.domain.Membership;
 import com.example.springboottdd.dto.MembershipAddResponse;
+import com.example.springboottdd.dto.MemebershipDetailResponse;
 import com.example.springboottdd.enums.MembershipErrorResult;
 import com.example.springboottdd.enums.MembershipType;
 import com.example.springboottdd.exception.MembershipException;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 이승환
@@ -41,7 +43,17 @@ public class MembershipService {
                 .build();
     }
 
-    public List<Membership> getMembershipList(final String userId) {
-        return membershipRepository.findAllByUserId(userId);
+    public List<MemebershipDetailResponse> getMembershipList(final String userId) {
+
+        final List<Membership> memberships = membershipRepository.findAllByUserId(userId);
+
+        return memberships.stream()
+                .map(v -> MemebershipDetailResponse.builder()
+                        .id(v.getId())
+                        .membershipType(v.getMembershipType())
+                        .point(v.getPoint())
+                        .createdAt(v.getCreatedAt())
+                        .build())
+                .collect(Collectors.toList());
     }
 }
