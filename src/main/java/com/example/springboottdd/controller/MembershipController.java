@@ -1,17 +1,17 @@
 package com.example.springboottdd.controller;
 
+import com.example.springboottdd.dto.MembershipDetailResponse;
 import com.example.springboottdd.dto.MembershipRequest;
 import com.example.springboottdd.dto.MembershipAddResponse;
 import com.example.springboottdd.service.MembershipService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.List;
 
 import static com.example.springboottdd.constants.MembershipConstants.USER_ID_HEADER;
 
@@ -38,5 +38,12 @@ public class MembershipController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(membershipAddResponse);
+    }
+
+    @GetMapping("/api/v1/membership/list")
+    public ResponseEntity<List<MembershipDetailResponse>> getMembershipList(
+            @RequestHeader(USER_ID_HEADER) final String userId
+    ) {
+        return ResponseEntity.ok(membershipService.getMembershipList(userId));
     }
 }
