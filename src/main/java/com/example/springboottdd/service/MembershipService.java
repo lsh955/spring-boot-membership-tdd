@@ -9,6 +9,8 @@ import com.example.springboottdd.repository.MembershipRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author 이승환
  * @since 2022-03-03
@@ -37,5 +39,9 @@ public class MembershipService {
                 .id(savedMembership.getId())
                 .membershipType(savedMembership.getMembershipType())
                 .build();
+    }
+
+    public List<Membership> getMembershipList(final String userId) {
+        return membershipRepository.findAllByUserId(userId);
     }
 }
