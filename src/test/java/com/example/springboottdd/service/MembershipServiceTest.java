@@ -33,6 +33,7 @@ public class MembershipServiceTest {
     private final String userId = "userId";
     private final MembershipType membershipType = MembershipType.NAVER;
     private final Integer point = 10000;
+    private final Long membershipId = -1L;
 
     @InjectMocks
     private MembershipService target;
