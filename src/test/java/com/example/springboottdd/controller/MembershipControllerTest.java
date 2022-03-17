@@ -1,9 +1,9 @@
 package com.example.springboottdd.controller;
 
 import com.example.springboottdd.common.GlobalExceptionHandler;
+import com.example.springboottdd.dto.MembershipAddResponse;
 import com.example.springboottdd.dto.MembershipDetailResponse;
 import com.example.springboottdd.dto.MembershipRequest;
-import com.example.springboottdd.dto.MembershipAddResponse;
 import com.example.springboottdd.enums.MembershipErrorResult;
 import com.example.springboottdd.enums.MembershipType;
 import com.example.springboottdd.exception.MembershipException;
@@ -278,5 +278,19 @@ public class MembershipControllerTest {
 
         // then
         resultActions.andExpect(status().isOk());
+    }
+
+    @Test
+    public void 멤버십삭제실패_사용자식별값이헤더에없음() throws Exception {
+        // given
+        final String url = "/api/v1/memberships/-1";
+
+        // when
+        final ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.delete(url)
+        );
+
+        // then
+        resultActions.andExpect(status().isBadRequest());
     }
 }
