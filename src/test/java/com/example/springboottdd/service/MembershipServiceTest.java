@@ -154,10 +154,10 @@ public class MembershipServiceTest {
         doReturn(Optional.of(membership)).when(membershipRepository).findById(membershipId);
 
         // when
-        final MembershipException result = assertThrows(MembershipException.class, () -> target.removeMembership(membershipId, userId));
+        final MembershipException result = assertThrows(MembershipException.class, () -> target.removeMembership(membershipId, "notowner"));
 
         // when
-        assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.MEMBERSHIP_NOT_FOUND);
+        assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.NOT_MEMBERSHIP_OWNER);
     }
 
     @Test
