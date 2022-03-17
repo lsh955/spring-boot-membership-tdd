@@ -356,7 +356,7 @@ public class MembershipControllerTest {
         );
 
         // then
-        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(status().isNoContent());
     }
 
     private MembershipRequest membershipRequest(final Integer point) {
