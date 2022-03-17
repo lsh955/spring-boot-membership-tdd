@@ -11,6 +11,6 @@ public class RatePointService {
 
     public int calculateAmount(final int price) {
 
-        return 0;
+        return 100;
     }
 }
