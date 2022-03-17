@@ -206,4 +206,18 @@ public class MembershipServiceTest {
         assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.NOT_MEMBERSHIP_OWNER);
     }
 
+    @Test
+    public void 멤버십적립성공() {
+        // given
+        final Membership membership = membership();
+        doReturn(Optional.of(membership)).when(membershipRepository).findById(membershipId);
+
+        // when
+        final MembershipException result = assertThrows(MembershipException.class,
+                () -> target.accumulateMembershipPoint(membershipId, userId, 10000)
+        );
+
+        // then
+        assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.NOT_MEMBERSHIP_OWNER);
+    }
 }
