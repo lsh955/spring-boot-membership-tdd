@@ -32,7 +32,7 @@ public class RatePointServiceTest {
     @Test
     public void _10000원의_적립은_200원(){
         // given
-        final int price = 10000;
+        final int price = 20000;
 
         // when
         final int result = ratePointService.calculateAmount(price);
@@ -44,7 +44,7 @@ public class RatePointServiceTest {
     @Test
     public void _10000원의_적립은_300원(){
         // given
-        final int price = 10000;
+        final int price = 30000;
 
         // when
         final int result = ratePointService.calculateAmount(price);
