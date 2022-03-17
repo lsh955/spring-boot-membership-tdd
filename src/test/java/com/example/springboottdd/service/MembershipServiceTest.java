@@ -160,4 +160,16 @@ public class MembershipServiceTest {
         assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.MEMBERSHIP_NOT_FOUND);
     }
 
+    @Test
+    public void 멤버십삭제성공() {
+        // given
+        final Membership membership = membership();
+        doReturn(Optional.of(membership)).when(membershipRepository).findById(membershipId);
+
+        // when
+        target.removeMembership(membershipId, userId);
+
+        // when
+        // 없음.
+    }
 }
