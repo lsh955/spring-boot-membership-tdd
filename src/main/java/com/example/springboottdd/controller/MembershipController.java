@@ -4,12 +4,14 @@ import com.example.springboottdd.dto.MembershipAddResponse;
 import com.example.springboottdd.dto.MembershipDetailResponse;
 import com.example.springboottdd.dto.MembershipRequest;
 import com.example.springboottdd.service.MembershipService;
+import com.example.springboottdd.validation.ValidationGroups.MembershipAccumulateMarker;
+import com.example.springboottdd.validation.ValidationGroups.MembershipAddMarker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 import static com.example.springboottdd.constants.MembershipConstants.USER_ID_HEADER;
@@ -27,7 +29,7 @@ public class MembershipController {
     @PostMapping("/api/v1/membership")
     public ResponseEntity<MembershipAddResponse> addMembership(
             @RequestHeader(USER_ID_HEADER) final String userid,
-            @RequestBody @Valid final MembershipRequest membershipRequest
+            @RequestBody @Validated(MembershipAddMarker.class) final MembershipRequest membershipRequest
     ) {
         final MembershipAddResponse membershipAddResponse = membershipService.addMembership(
                 userid,
@@ -70,7 +72,7 @@ public class MembershipController {
     public ResponseEntity<Void> accumulateMembershipPoint(
             @RequestHeader(USER_ID_HEADER) final String userId,
             @PathVariable final Long id,
-            @RequestBody @Valid final MembershipRequest membershipRequest
+            @RequestBody @Validated(MembershipAccumulateMarker.class) final MembershipRequest membershipRequest
     ) {
         membershipService.accumulateMembershipPoint(id, userId, membershipRequest.getPoint());
 
