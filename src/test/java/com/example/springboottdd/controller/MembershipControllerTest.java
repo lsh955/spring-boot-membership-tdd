@@ -293,4 +293,19 @@ public class MembershipControllerTest {
         // then
         resultActions.andExpect(status().isBadRequest());
     }
+
+    @Test
+    public void 멤버십삭제성공() throws Exception {
+        // given
+        final String url = "/api/v1/memberships/-1";
+
+        // when
+        final ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.delete(url)
+                        .header(USER_ID_HEADER, "12345")
+        );
+
+        // then
+        resultActions.andExpect(status().isNoContent());
+    }
 }
