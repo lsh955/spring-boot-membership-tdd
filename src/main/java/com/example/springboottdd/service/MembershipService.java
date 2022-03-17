@@ -27,6 +27,7 @@ public class MembershipService {
     private final RatePointService ratePointService;
     private final MembershipRepository membershipRepository;
 
+    @Transactional
     public MembershipAddResponse addMembership(final String userId, final MembershipType membershipType, final Integer point) {
         final Membership result = membershipRepository.findByUserIdAndMembershipType(userId, membershipType);
 
@@ -77,6 +78,7 @@ public class MembershipService {
                 .build();
     }
 
+    @Transactional
     public void removeMembership(final Long membershipId, final String userId) {
         final Optional<Membership> optionalMembership = membershipRepository.findById(membershipId);
         final Membership membership = optionalMembership.orElseThrow(() ->
