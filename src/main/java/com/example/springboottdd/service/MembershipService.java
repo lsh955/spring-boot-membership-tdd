@@ -21,9 +21,18 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional(readOnly = true) // 읽기전용
 public class MembershipService {
 
+    /**
+     * ratePointService 변수 이름에 대한 고찰
+     *
+     * pointService로 해주면
+     * 추후에 FixPointService가 추가되었을 때
+     * PointService 타입의 빈이 2개이고,
+     * pointService라는 이름의 빈은 존재하지 않으므로 에러가 발생하게 된다.
+     * 그러므로 미래에 이러한 문제를 방지하기 위해 변수의 이름을 ratePointService로 해준 것.
+     */
     private final RatePointService ratePointService;
     private final MembershipRepository membershipRepository;
 
@@ -101,15 +110,6 @@ public class MembershipService {
         if(!membership.getUserId().equals(userId))
             throw new MembershipException(MembershipErrorResult.NOT_MEMBERSHIP_OWNER);
 
-        /**
-         * ratePointService 변수이름에 대한 고찰
-         *
-         * pointService로 해주면
-         * 추후에 FixPointService가 추가되었을 때
-         * PointService 타입의 빈이 2개이고,
-         * pointService라는 이름의 빈은 존재하지 않으므로 에러가 발생하게 된다.
-         * 그러므로 미래에 이러한 문제를 방지하기 위해 변수의 이름을 ratePointService로 해준 것.
-         */
         final int additionalAmount = ratePointService.calculateAmount(amount);
 
         membership.setPoint(additionalAmount + membership.getPoint());
