@@ -50,7 +50,9 @@ public class MembershipServiceTest {
         doReturn(Membership.builder().build()).when(membershipRepository).findByUserIdAndMembershipType(userId, membershipType);
 
         // when
-        final MembershipException result = assertThrows(MembershipException.class, () -> target.addMembership(userId, membershipType, point));
+        final MembershipException result = assertThrows(MembershipException.class,
+                () -> target.addMembership(userId, membershipType, point)
+        );
 
         // then
         assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.DUPLICATED_MEMBERSHIP_REGISTER);
@@ -107,7 +109,9 @@ public class MembershipServiceTest {
         doReturn(Optional.empty()).when(membershipRepository).findById(membershipId);
 
         // when
-        final MembershipException result = assertThrows(MembershipException.class, () -> target.getMembership(membershipId, userId));
+        final MembershipException result = assertThrows(MembershipException.class,
+                () -> target.getMembership(membershipId, userId)
+        );
 
         // then
         assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.MEMBERSHIP_NOT_FOUND);
@@ -119,7 +123,9 @@ public class MembershipServiceTest {
         doReturn(Optional.empty()).when(membershipRepository).findById(membershipId);
 
         // when
-        final MembershipException result = assertThrows(MembershipException.class, () -> target.getMembership(membershipId, "notowner"));
+        final MembershipException result = assertThrows(MembershipException.class,
+                () -> target.getMembership(membershipId, "notowner")
+        );
 
         // then
         assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.MEMBERSHIP_NOT_FOUND);
@@ -144,7 +150,9 @@ public class MembershipServiceTest {
         doReturn(Optional.empty()).when(membershipRepository).findById(membershipId);
 
         // when
-        final MembershipException result = assertThrows(MembershipException.class, () -> target.removeMembership(membershipId, userId));
+        final MembershipException result = assertThrows(MembershipException.class,
+                () -> target.removeMembership(membershipId, userId)
+        );
 
         // when
         assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.MEMBERSHIP_NOT_FOUND);
@@ -157,7 +165,9 @@ public class MembershipServiceTest {
         doReturn(Optional.of(membership)).when(membershipRepository).findById(membershipId);
 
         // when
-        final MembershipException result = assertThrows(MembershipException.class, () -> target.removeMembership(membershipId, "notowner"));
+        final MembershipException result = assertThrows(MembershipException.class,
+                () -> target.removeMembership(membershipId, "notowner")
+        );
 
         // when
         assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.NOT_MEMBERSHIP_OWNER);
@@ -216,5 +226,6 @@ public class MembershipServiceTest {
         target.accumulateMembershipPoint(membershipId, userId, 10000);
 
         // then
+        // 없음.
     }
 }
