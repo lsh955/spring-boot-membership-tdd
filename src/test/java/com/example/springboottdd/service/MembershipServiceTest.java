@@ -213,11 +213,8 @@ public class MembershipServiceTest {
         doReturn(Optional.of(membership)).when(membershipRepository).findById(membershipId);
 
         // when
-        final MembershipException result = assertThrows(MembershipException.class,
-                () -> target.accumulateMembershipPoint(membershipId, userId, 10000)
-        );
+        target.accumulateMembershipPoint(membershipId, userId, 10000);
 
         // then
-        assertThat(result.getErrorResult()).isEqualTo(MembershipErrorResult.NOT_MEMBERSHIP_OWNER);
     }
 }
