@@ -40,8 +40,6 @@ public class MembershipServiceTest {
 
     @Mock
     private MembershipRepository membershipRepository;
-    @Mock
-    private RatePointService ratePointService;
 
     @Test
     @DisplayName("멤버십등록 실패(이미 존재하는 멤버십)")
