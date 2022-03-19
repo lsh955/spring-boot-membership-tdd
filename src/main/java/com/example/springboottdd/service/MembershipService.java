@@ -36,8 +36,18 @@ public class MembershipService {
     private final RatePointService ratePointService;
     private final MembershipRepository membershipRepository;
 
+    /**
+     * 멤버십 등록
+     * @param userId
+     * @param membershipType
+     * @param point
+     * @return
+     */
     @Transactional
-    public MembershipAddResponse addMembership(final String userId, final MembershipType membershipType, final Integer point) {
+    public MembershipAddResponse addMembership(final String userId,
+                                               final MembershipType membershipType,
+                                               final Integer point
+    ) {
         final Membership result = membershipRepository.findByUserIdAndMembershipType(userId, membershipType);
 
         if (result != null)  // 중복된 회원이 있을경우 Exception 호출
@@ -57,6 +67,11 @@ public class MembershipService {
                 .build();
     }
 
+    /**
+     * 멤버십목록 조회
+     * @param userId
+     * @return
+     */
     public List<MembershipDetailResponse> getMembershipList(final String userId) {
         final List<Membership> membershipList = membershipRepository.findAllByUserId(userId);
 
@@ -70,7 +85,15 @@ public class MembershipService {
                 .collect(Collectors.toList());
     }
 
-    public MembershipDetailResponse getMembership(final Long membershipId, final String userId) {
+    /**
+     * 멤버십상세 조회
+     * @param membershipId
+     * @param userId
+     * @return
+     */
+    public MembershipDetailResponse getMembership(final Long membershipId,
+                                                  final String userId
+    ) {
         final Optional<Membership> optionalMembership = membershipRepository.findById(membershipId);
         final Membership membership = optionalMembership.orElseThrow(() ->
                 new MembershipException(MembershipErrorResult.MEMBERSHIP_NOT_FOUND)
@@ -87,8 +110,15 @@ public class MembershipService {
                 .build();
     }
 
+    /**
+     * 멤버십 삭제
+     * @param membershipId
+     * @param userId
+     */
     @Transactional
-    public void removeMembership(final Long membershipId, final String userId) {
+    public void removeMembership(final Long membershipId,
+                                 final String userId
+    ) {
         final Optional<Membership> optionalMembership = membershipRepository.findById(membershipId);
         final Membership membership = optionalMembership.orElseThrow(() ->
                 new MembershipException(MembershipErrorResult.MEMBERSHIP_NOT_FOUND)
@@ -100,8 +130,17 @@ public class MembershipService {
         membershipRepository.deleteById(membershipId);
     }
 
+    /**
+     * 멤버십포인트 적립
+     * @param membershipId
+     * @param userId
+     * @param amount
+     */
     @Transactional
-    public void accumulateMembershipPoint(final Long membershipId, final String userId, final int amount) {
+    public void accumulateMembershipPoint(final Long membershipId,
+                                          final String userId,
+                                          final int amount
+    ) {
         final Optional<Membership> optionalMembership = membershipRepository.findById(membershipId);
         final Membership membership = optionalMembership.orElseThrow(() ->
                 new MembershipException(MembershipErrorResult.MEMBERSHIP_NOT_FOUND)
