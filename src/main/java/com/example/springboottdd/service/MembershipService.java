@@ -26,7 +26,7 @@ public class MembershipService {
 
     /**
      * ratePointService 변수 이름에 대한 고찰
-     *
+     * <p>
      * pointService로 해주면
      * 추후에 FixPointService가 추가되었을 때
      * PointService 타입의 빈이 2개이고,
@@ -38,6 +38,7 @@ public class MembershipService {
 
     /**
      * 멤버십 등록
+     *
      * @param userId
      * @param membershipType
      * @param point
@@ -69,6 +70,7 @@ public class MembershipService {
 
     /**
      * 멤버십목록 조회
+     *
      * @param userId
      * @return
      */
@@ -87,6 +89,7 @@ public class MembershipService {
 
     /**
      * 멤버십상세 조회
+     *
      * @param membershipId
      * @param userId
      * @return
@@ -112,6 +115,7 @@ public class MembershipService {
 
     /**
      * 멤버십 삭제
+     *
      * @param membershipId
      * @param userId
      */
@@ -132,6 +136,7 @@ public class MembershipService {
 
     /**
      * 멤버십포인트 적립
+     *
      * @param membershipId
      * @param userId
      * @param amount
@@ -146,7 +151,7 @@ public class MembershipService {
                 new MembershipException(MembershipErrorResult.MEMBERSHIP_NOT_FOUND)
         );
 
-        if(!membership.getUserId().equals(userId))
+        if (!membership.getUserId().equals(userId))
             throw new MembershipException(MembershipErrorResult.NOT_MEMBERSHIP_OWNER);
 
         final int additionalAmount = ratePointService.calculateAmount(amount);

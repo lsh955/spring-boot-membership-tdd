@@ -18,7 +18,7 @@ public class RatePointServiceTest {
     private RatePointService ratePointService;
 
     @Test
-    public void _10000원의_적립은_100원(){
+    public void _10000원의_적립은_100원() {
         // given
         final int price = 10000;
 
@@ -30,7 +30,7 @@ public class RatePointServiceTest {
     }
 
     @Test
-    public void _10000원의_적립은_200원(){
+    public void _10000원의_적립은_200원() {
         // given
         final int price = 20000;
 
@@ -42,7 +42,7 @@ public class RatePointServiceTest {
     }
 
     @Test
-    public void _10000원의_적립은_300원(){
+    public void _10000원의_적립은_300원() {
         // given
         final int price = 30000;
 
